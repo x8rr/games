@@ -1,2 +1,1 @@
-# ucp-games
-Game stash for Classplay.
+personal game stash
