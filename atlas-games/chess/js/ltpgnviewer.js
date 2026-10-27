@@ -3908,7 +3908,7 @@ function PrintPosition()
   ww=window.open("");
   with(ww.document)
   { open();
-    writeln("<html><head><title id="title">"+tt+"</title></head><body><div align='center'>");
+    writeln("<html><head><title>"+tt+"</title></head><body><div align='center'>");
     writeln(GetDiagram(pp,tt));
     if(Annotation[MoveCount]) writeln(Annotation[MoveCount]);
     writeln("</div></body></html>");    

@@ -1601,7 +1601,7 @@ Game.Launch=function()
 		=======================================================================================*/
 		Game.CheckUpdates=function()
 		{
-			ajax('server.php?q=checkupdate',Game.CheckUpdatesResponse);
+			/* self-hosted: no update check */
 		}
 		Game.CheckUpdatesResponse=function(response)
 		{
@@ -1636,7 +1636,7 @@ Game.Launch=function()
 		
 		Game.GrabData=function()
 		{
-			ajax('/patreon/grab.php',Game.GrabDataResponse);
+			/* self-hosted: no patreon/heralds fetch */
 		}
 		Game.GrabDataResponse=function(response)
 		{

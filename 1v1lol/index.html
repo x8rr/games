@@ -5,15 +5,11 @@
 
 	<meta charset="utf-8" />
 	<title id="title">1v1.LOL</title>
-	<script src="/assets/js/script.js"></script>
-	<script src="js/googleAnalytics.js"></script>
 	<script src="lib/jquery.min.js"></script>
 	<script src="js/IronSourceRV.js"></script>
 	<script src="js/mobileRedirect.js"></script>
 	<script src="js/fullscreen.js"></script>
-	<script src="/assets/js/geoblocker.js"></script>
-	<script src="/assets/js/settings.js"></script>
-	<script>
+<script>
 		var gameLoaded = false;
 		window.addEventListener("beforeunload", function (e) {
 			if (adsVisible || !gameLoaded || !lockedOccured) return null;
@@ -35,42 +31,11 @@
 	<meta name="description"
 		content="Discover 1v1, the online building simulator & third person shooting game. Battle royale, build fight, box fight, zone wars and more game modes to enjoy!" />
 	<meta name="keywords" content="just,build,simulator,practice,free,online,battle,royale" />
-	<script type="text/javascript" src="js/sdkloader/ima3.js"></script>
+	
 
 	<!-- ZONETAG - PLACE INTO HEAD SECTION OR RUN CODE AT STARTUP -->
 	<script>
-		(function (zonefile) {
-			var y = window.location.href
-				.split("#")[0]
-				.split("")
-				.reduce(function (a, b) {
-					return ((a << 5) - a + b.charCodeAt(0)) >>> 1;
-				}, 0);
-			y = (10 + ((y * 7) % 26)).toString(36) + y.toString(36);
-			var drutObj = (window[y] = window[y] || {});
-			function failCpmstarAPI() {
-				var failFn = function (o) {
-					o && typeof o === "object" && o.fail && o.fail();
-				};
-				drutObj && Array.isArray(drutObj.cmd) && drutObj.cmd.forEach(failFn) && (drutObj.cmd.length = 0);
-				window.cpmstarAPI = window["_" + zonefile] = failFn;
-			}
-			var rnd = Math.round(Math.random() * 999999);
-			var s = document.createElement("script");
-			s.type = "text/javascript";
-			s.async = true;
-			s.onerror = failCpmstarAPI;
-			var proto = document.location.protocol;
-			var host = proto == "https:" || proto == "file:" ? "https://server" : "//cdn";
-			if (window.location.hash == "#cpmstarDev") host = "//dev.server";
-			if (window.location.hash == "#cpmstarStaging") host = "//staging.server";
-			s.src = host + ".cpmstar.com/cached/zonefiles/" + zonefile + ".js?rnd=" + rnd;
-			var s2 = document.getElementsByTagName("script")[0];
-			s2.parentNode.insertBefore(s, s2);
-			window.cpmstarAPI = function (o) {
-				(drutObj.cmd = drutObj.cmd || []).push(o);
-			};
-		})("372_49986_1v1");
+		window.cpmstarAPI = function (o) { if (o && typeof o === "object" && o.fail) o.fail(); }; /* ads stubbed: self-hosted */
 		Object.defineProperty(window.performance.__proto__, "measures", Object.getOwnPropertyDescriptor(window.performance.__proto__, "now")),
 			delete window.performance.__proto__.now,
 			(window.performance.__proto__.now = {}),
@@ -146,6 +111,8 @@
 		</div>
 	</div>
 
+	<script>window.OFFLINE_SHIM_ALLOW = /(^|\.)(googleapis\.com|firebaseio\.com|cloudfunctions\.net|firebaseapp\.com|1v1\.lol|gstatic\.com)$/;</script>
+	<script src="js/offline-shim.js"></script>
 	<script id="unity-loader" src="UnityLoader.js"></script>
 	<!--<script src="Build/UnityLoader.js"></script>-->
 	<script>
@@ -313,7 +280,7 @@
 	<script src="firebase/firebase-app.js"></script>
 
 	<!-- Add Firebase products that you want to use -->
-	<script src="firebase/firebase-analytics.js"></script>
+	
 	<script src="firebase/firebase-auth.js"></script>
 	<script src="firebase/firebase-firestore.js"></script>
 	<script src="firebase/firebase-remote-config.js"></script>

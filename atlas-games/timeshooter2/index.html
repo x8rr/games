@@ -5,9 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <title id="title">Time Shooter 2</title>
-    <script src="/js/all.js"></script>
-
-    <link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="style.css" />
   </head>
   <body class="dark">
     <div id="unity-container" class="unity-desktop"><canvas id="unity-canvas"></canvas></div>
@@ -19,6 +17,11 @@
       </div>
     </div>
     <div id="unity-fullscreen-button" style="display: none"></div>
+    <script>
+      // self-hosted: ad hooks called by the build resolve immediately (rewarded = granted)
+      function showFullscrenAd() {}
+      function showRewardedAd(id) { try { window.unityInstanceRef && window.unityInstanceRef.SendMessage("GameDistribution", "RewardedVideoSuccessCallback"); } catch (e) {} return id; }
+    </script>
     <script>
       const hideFullScreenButton = "1";
       const buildUrl = "Build";
@@ -43,7 +46,7 @@
         container.className = "unity-mobile";
         config.devicePixelRatio = 1;
       }
-      canvas.style.background = "url('" + buildUrl + "/ts2.jpg') center / cover";
+      canvas.style.background = "url('" + "ts2.jpg') center / cover";
       loadingCover.style.display = "";
       const script = document.createElement("script");
       script.src = loaderUrl;
@@ -54,6 +57,7 @@
           progressBarFull.style.width = `${100 * progress}%`;
         })
           .then((unityInstance) => {
+          window.unityInstanceRef = unityInstance;
             loadingCover.style.display = "none";
             if (canFullscreen) {
               if (!hideFullScreenButton) {

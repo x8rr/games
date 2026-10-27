@@ -4,13 +4,10 @@
 	
 	<meta charset="utf-8">
 
-	<title id="title">Basket Bros | Alt link at www.dunk.monster</title>
-	<script src="/assets/js/geoblocker.js"></script>
-	<script src="/assets/js/settings.js"></script>
-	
-	<meta name="description" content="Online multiplayer basketball! Dunk all over your bros!" />
+	<title id="title">Basket Bros</title>
+<meta name="description" content="Online multiplayer basketball! Dunk all over your bros!" />
 	<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<link rel="icon" type="image/png" href="./favicon.png">
+	<link rel="icon" type="image/png" href="assets/bbro.png">
 	<meta name="Keywords" content="Basketball, Play, Free, Online, Multiplayer, Games, IO, Sports, Dunk, Scrolling, Friends">
 	<meta name="author" content="Blue Wizard Digital">	
 	
@@ -24,15 +21,12 @@
 	<meta property="og:title"              content="Basket Bros | by Blue Wizard Digital" />
 	<meta property="og:description"        content="Dunk all over your bros!" />
 	<meta name="viewport" content="user-scalable=0">	
-	<link rel="manifest" href="manifest.json">
 
 
 	<script type="text/javascript" src="./BasketBros.js?th=603"></script>
 
 	<script>
-		if (typeof navigator.serviceWorker !== 'undefined') {
-			navigator.serviceWorker.register('sw.js')
-		}
+
 	</script>
 
 	<script>
@@ -67,31 +61,18 @@
 			-ms-animation: spin1 2s infinite linear;
 			animation: spin1 2s infinite linear;
 		}
+		[id^="basketbros-io_"] { display: none !important; }
+		#more { display: none; }
   	</style>
 
 
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125804026-2"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-		gtag('config', 'UA-125804026-2', { cookie_flags: 'secure;samesite=none' }); 
-		gtag('config', 'G-GYMF5NRSDN', { cookie_flags: 'secure;samesite=none' }); 
-	</script>
-	<script type="text/javascript">
-		(function(c,l,a,r,i,t,y){
-			c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-			t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-			y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-		})(window, document, "clarity", "script", "jpzfplk0la");
-	</script>
+
 			<script>
 			//Interstitial ad available event
 			document.addEventListener("aip_interstitialadavailable", function(e) {
 				console.log("An interstitial ad is available");
 			});
 		</script>
-		<script src="//api.adinplay.com/libs/aiptag/pub/SSK/basketbros.io/tag.min.js"></script>
 	
 	<script>
 
@@ -223,7 +204,7 @@
 				return;
 			}
 			else if (typeof adplayer === 'undefined') {
-				Main.DoneVideoAd(true);
+				Main.DoneVideoAd(); /* self-hosted: no ads, finish immediately */
 				SendEvent('event', 'video_adblocked');
 				console.log('VIDEO_ADBLOCKED');		
 
@@ -245,11 +226,11 @@
 	</script>
 
 	<!-- Firebase App (the core Firebase SDK) -->
-	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+	<script src="lib/firebase-app.js"></script>
 	<!-- Firebase Authentication -->
-	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+	<script src="lib/firebase-auth.js"></script>
 	<!-- Firebase Firestore (Database) -->
-	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+	<script src="lib/firebase-firestore.js"></script>
 
 	<script>
 		// Your web app's Firebase configuration
@@ -392,7 +373,7 @@
 		</div>	
 		
 		<div id="openfl-content" onblur="window.focus();"  
-												style="width: calc(100% - 320px); float:left;"  
+												style="width: 100%; float:left;"  
 									>
 			<script type="text/javascript">
 				lime.embed ("BasketBros", "openfl-content", 0, 0, { parameters: {} });
@@ -475,7 +456,7 @@
 				<br/>
 				<br/>
                 <div class="partner">
-                   &nbsp; Would you like to be a partner too? Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bcd5d2dad3fcded0c9d9cbd5c6ddced892dfd3d1">[email&#160;protected]</a>
+                   &nbsp; Would you like to be a partner too? Contact: Blue Wizard Digital
                 </div> 
 
 				<!--                <div class="partner defaultshow hidecrazygames">
@@ -496,7 +477,7 @@
         </div>
 
     </div>
-	<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+	<script>
 		var lastRefresh = 0;
 
 		function ShowAd1(forceaip=false)
@@ -942,23 +923,8 @@
 		}, 32000);*/
 
 		var sid='p5m6p5i6sv9de37e077opjmlpi'
-		function updateStatus(fromEvent = false)
-		{
-			const req = new XMLHttpRequest();
-			var aStr = "recordsession.php?s="+sid;
-			if(fromEvent == true)  aStr = aStr + "&e=1"
-			req.open("GET", aStr);
-			req.send();
-		}
-		function SendEvent(theEvent, theAction, theParms = '') {
-			if(theParms == '') {
-				gtag(theEvent, theAction);
-			} else {
-				gtag(theEvent, theAction, theParms);
-			}
-			updateStatus(true);
-			//console.log("Sending event: " + theEvent + "/" + theAction + "/" + theParms);
-		}
+		function updateStatus(fromEvent = false) {}
+		function SendEvent(theEvent, theAction, theParms = '') {}
 		//setInterval(function() { updateStatus, 4*60*1000);			
 		updateStatus(true);
 
@@ -967,7 +933,7 @@
 		function EmailSignup() {
 			if(document.getElementById("signup") || document.getElementById("deleteme")) return;
 			const iframe = document.createElement("iframe");
-			iframe.src = "https://bluewizard.com/subscribe-to-bbros/";
+			return; /* self-hosted: no external signup frame */
 
 //			iframe.style.display = "block";
 			iframe.style.width = "550px";

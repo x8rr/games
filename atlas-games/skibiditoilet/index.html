@@ -5,10 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title id="title">Skibidi Toilet 1v100</title>
-  <link rel="icon" href="../../images/ico.ico">
-  <script src="/js/all.js"></script>
-
-  <link rel="icon" href="TemplateData/favicon.ico">
+<link rel="icon" href="TemplateData/favicon.ico">
   <link rel="stylesheet" href="TemplateData/style.css?v=2">
 </head>
 
@@ -23,6 +20,11 @@
     </div>
     <div id="unity-warning"> </div>
   </div>
+  <script>
+    // self-hosted: ad hooks called by the build resolve immediately (rewarded = granted)
+    function showFullscrenAd() {}
+    function showRewardedAd(id) { try { window.unityInstanceRef && window.unityInstanceRef.SendMessage("GameDistribution", "RewardedVideoSuccessCallback"); } catch (e) {} }
+  </script>
   <script>
     window.addEventListener("load", function () {
       if ("serviceWorker" in navigator) {
@@ -93,6 +95,7 @@
       createUnityInstance(canvas, config, (progress) => {
         progressBarFull.style.width = 100 * progress + "%";
       }).then((unityInstance) => {
+        window.unityInstanceRef = unityInstance;
         loadingBar.style.display = "none";
       }).catch((message) => {
         alert(message);

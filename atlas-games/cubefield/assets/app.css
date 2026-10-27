@@ -45,7 +45,7 @@ html
     position: absolute;
     right: 10px;
     top:10px;
-    background-image: url('sponsor_logo.png');
+    /* sponsor logo removed (self-hosted) */
     background-repeat: no-repeat;
     background-size: contain;
     background-position:bottom right;

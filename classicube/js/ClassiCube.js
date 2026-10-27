@@ -3533,8 +3533,9 @@ function _interop_AudioDescribe(errCode, buffer, bufferLen) {
 }
 
 function _interop_AudioDownload(name) {
+ if (["dig_grass1", "dig_grass2", "dig_grass3", "dig_grass4", "step_grass1", "step_grass2", "step_grass3", "step_grass4"].indexOf(name) < 0) return; /* self-hosted: only bundled sounds */
  var xhr = new XMLHttpRequest();
- xhr.open("GET", "/static/sounds/" + name + ".wav", true);
+ xhr.open("GET", "static/sounds/" + name + ".wav", true);
  xhr.responseType = "arraybuffer";
  xhr.onload = function() {
   var data = xhr.response;
@@ -3620,6 +3621,7 @@ function _interop_DownloadAsync(urlStr, method, reqID) {
  var reqMethod = method == 1 ? "HEAD" : "GET";
  var onFinished = Module["_Http_OnFinishedAsync"];
  var onProgress = Module["_Http_OnUpdateProgress"];
+ if (/^(https?:)?\/\//i.test(url) && url.indexOf(location.origin + "/") !== 0) { setTimeout(function () { onFinished(reqID, 0, 0, 0); }, 0); return 0; } /* self-hosted: no external downloads (skins/servers) */
  var xhr = new XMLHttpRequest();
  try {
   xhr.open(reqMethod, url);

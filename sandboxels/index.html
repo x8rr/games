@@ -3,14 +3,7 @@
 
 <head>
 
-    <!--BEGIN CLASSPLAY SCRIPT INJECTION-->
-
-    <script src="/assets/js/geoblocker.js"></script>
-    <script src="/assets/js/settings.js"></script>
-
-    <!--END CLASSPLAY SCRIPT INJECTION-->
-
-    <meta charset="utf-8">
+<meta charset="utf-8">
     <title id="title">Sandboxels - Experiment with Pixels</title>
     <meta name="description" content="Relax or experiment with over 500 materials in this falling sand simulator, featuring heat, chemical reactions, density, burning, explosions.">
     <meta name="keywords" content="falling sand, elements, pixel art, simulator, powder, toy, chemistry, science, educational">
@@ -114,7 +107,7 @@
         if (typeof navigator !== 'undefined') {
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
-                    navigator.serviceWorker.register('/service-worker.js');
+                    /* self-hosted: no service worker */
                 });
             }
         }
@@ -12524,7 +12517,7 @@ else if (settings.lang && settings.lang !== "en") {
 if (langCode) {
     try {
         var Httpreq = new XMLHttpRequest();
-        Httpreq.open("GET","https://sandboxels.r74n.com/lang/"+langCode+".json",false);
+        Httpreq.open("GET","lang/"+langCode+".json",false);
         Httpreq.send(null);
         lang = JSON.parse(Httpreq.responseText);
         if (lang["#lang.font"]) {
@@ -17769,14 +17762,6 @@ Cancer, Landmine, Grenade, Smoke Grenade">?</span>
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-93720349-9"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-93720349-9');
-</script>
-
 </body>
 
 </html>

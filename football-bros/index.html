@@ -4,10 +4,10 @@
 	
 	<meta charset="utf-8">
 
-	<title id="title">FOOTBALL BROS! | Also at www.crispyclean.org</title>	
+	<title id="title">Football Bros</title>	
 	<meta name="description" content="Online multiplayer football! Bone crushing hits, long bombs, and tons more!" />
 	<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<link rel="icon" type="image/png" href="./favicon.png">
+	<link rel="icon" type="image/png" href="assets/fbro.png">
 	<meta name="Keywords" content="Football, Play, Free, Online, Multiplayer, Games, IO, Sports, Scrolling, Friends">
 	<meta name="author" content="Blue Wizard Digital">	
 	
@@ -16,7 +16,6 @@
 	<meta property="og:title" content="Football Bros" />
 	<meta property="og:description" content="Online multiplayer football! Bone crushing hits, long bombs, and tons more!" />
 	<meta property="og:image" content="https://footballbros.io/splash.jpg" />
-	<link rel="manifest" href="manifest.json">
 
 	
 	<script type="text/javascript" src="./FootballBros.js?th=217"></script>
@@ -37,12 +36,7 @@
 
 	<!--SCRIPT INJECTION-->
 
-<script src="/assets/js/geoblocker.js"></script>
-<script src="/assets/js/settings.js"></script>
-
-
-	
-	<style>
+<style>
 		html,body { margin: 0; padding: 0; height: 100%; background: #000000; color: orange; height: 100%; width: 100%; height: 100vh; width: 100vw; margin:0; padding:0;}
 		.body::-webkit-scrollbar { /* WebKit */
  			width: 0px;
@@ -161,27 +155,17 @@
 		.footer-links a:visited {
 			color: #888; /* Football-themed hover color */
 		}
+		#more, footer { display: none; }
   	</style>
 
 
 	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-GREB63PWEL"></script>
-
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-
-	if(location.hostname != "localhost") gtag('config', 'G-GREB63PWEL', { cookie_flags: 'secure;samesite=none' });
-	</script>
-
-		<script>
+<script>
 			//Interstitial ad available event
 			document.addEventListener("aip_interstitialadavailable", function(e) {
 				console.log("An interstitial ad is available");
 			});
 		</script>
-		<script src="//api.adinplay.com/libs/aiptag/pub/SSK/footballbros.io/tag.min.js"></script>
 	
 	<script>
 
@@ -301,7 +285,7 @@
 			return;
 		}
 		else if (typeof adplayer === 'undefined') {
-			Main.DoneVideoAd(true);
+			Main.DoneVideoAd(); /* self-hosted: no ads, finish immediately */
 			SendEvent('event', 'video_adblocked');
 			console.log('VIDEO_ADBLOCKED');		
 
@@ -317,11 +301,11 @@
 	</script>
 
 	<!-- Firebase App (the core Firebase SDK) -->
-	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+	<script src="lib/firebase-app.js"></script>
 	<!-- Firebase Authentication -->
-	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+	<script src="lib/firebase-auth.js"></script>
 	<!-- Firebase Firestore (Database) -->
-	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+	<script src="lib/firebase-firestore.js"></script>
 
 	<script>
 		// Your web app's Firebase configuration
@@ -812,7 +796,7 @@
 			}
 
 						if(typeof adplayer === 'undefined' ) {
-				Main.DoneInterstitialAd(true);
+				Main.DoneInterstitialAd(false); /* self-hosted: no ads */
 				return;
 			}
 			aiptag.cmd.player.push(function() { adplayer.startAdBreak(); });
@@ -864,23 +848,8 @@
 		}, 32000);*/
 
 		var sid='40ub80t448stvnjj3faqjh20s6'
-		function updateStatus(fromEvent = false)
-		{
-			const req = new XMLHttpRequest();
-			var aStr = "recordsession.php?s="+sid;
-			if(fromEvent == true)  aStr = aStr + "&e=1"
-			req.open("GET", aStr);
-			req.send();
-		}
-		function SendEvent(theEvent, theAction, theParms = '') {
-			if(theParms == '') {
-				gtag(theEvent, theAction);
-			} else {
-				gtag(theEvent, theAction, theParms);
-			}
-			updateStatus(true);
-			//console.log("Sending event: " + theEvent + "/" + theAction + "/" + theParms);
-		}
+		function updateStatus(fromEvent = false) {}
+		function SendEvent(theEvent, theAction, theParms = '') {}
 		//setInterval(function() { updateStatus, 4*60*1000);			
 		//setInterval( function() { 
 		//	window.scrollTo(0, 0); 
@@ -892,7 +861,7 @@
 		function EmailSignup() {
 			if(document.getElementById("signup") || document.getElementById("deleteme")) return;
 			const iframe = document.createElement("iframe");
-			iframe.src = "https://bluewizard.com/subscribe-to-bbros/";
+			return; /* self-hosted: no external signup frame */
 
 //			iframe.style.display = "block";
 			iframe.style.width = "550px";

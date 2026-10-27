@@ -253,7 +253,7 @@ function translateTips(locale) {
 
 async function getTranslations() {
   let result = await fetch(
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSOU_pMce0njTy64pTFVI7yLN2t5ReGYaRCmJDdj_KRSSbAEL7XPixR80X4Jzm0r8sDL0KHq1QRkVGC/pub?output=tsv"
+    "translations.tsv"
   );
   let data = await result.text();
   let array = tsvToArray(data);
