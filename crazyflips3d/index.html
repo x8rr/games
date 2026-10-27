@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Crazy Flips 3D</title>
+<link rel="icon" href="thumb.png">
+<style>
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #3c1e66; }
+  #unity-canvas { width: 100%; height: 100%; display: block; background: #3c1e66; }
+  #loading { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 40%; max-width: 360px; height: 10px; border-radius: 5px; background: rgba(255,255,255,.2); }
+  #bar { width: 0; height: 100%; border-radius: 5px; background: #fff; transition: width .2s; }
+</style>
+</head>
+<body>
+<canvas id="unity-canvas" tabindex="-1"></canvas>
+<div id="loading"><div id="bar"></div></div>
+<script src="offline-guard.js"></script>
+<script src="crazysdk-stub.js"></script>
+<script src="Build/Builds.asm.loader.js"></script>
+<script>
+  var canvas = document.getElementById("unity-canvas");
+  createUnityInstance(canvas, {
+    codeUrl: "Build/Builds.asm.js",
+    dataUrl: "Build/Builds.data",
+    memoryUrl: "Build/Builds.asm.mem",
+    frameworkUrl: "Build/Builds.asm.framework.js",
+    streamingAssetsUrl: "StreamingAssets",
+    companyName: "CrazyGames",
+    productName: "Crazy Flips 3D",
+    productVersion: "1.0"
+  }, function (p) {
+    document.getElementById("bar").style.width = (100 * p) + "%";
+  }).then(function (instance) {
+    window.unityInstance = instance;
+    document.getElementById("loading").style.display = "none";
+    canvas.focus();
+  }).catch(function (e) { alert(e); });
+</script>
+</body>
+</html>

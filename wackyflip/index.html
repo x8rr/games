@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Wacky Flip</title>
+<link rel="icon" href="thumb.png">
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #1b1b2f; font-family: Arial, Helvetica, sans-serif; }
+  #unity-canvas { width: 100%; height: 100%; display: block; }
+  #loading { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+    background: #1b1b2f url(loading.png) center / cover no-repeat; color: #fff; }
+  #loading img { max-width: 60%; }
+  #track { width: 320px; max-width: 80%; height: 14px; background: rgba(0,0,0,.5); border-radius: 7px; overflow: hidden; }
+  #bar { width: 0; height: 100%; background: #ffcc00; }
+</style>
+</head>
+<body>
+<canvas id="unity-canvas" tabindex="-1"></canvas>
+<div id="loading"><img src="logo.png" alt="Wacky Flip"><div id="track"><div id="bar"></div></div></div>
+<script>
+  // Offline: no portal SDK, no ads, no telemetry.
+  window.GMSOFT_SDKTYPE = "gm";
+  window.GMSOFT_GAME_INFO = { allow_play: "yes", more_games_url: "" };
+  window.GMSOFT_ADS_INFO = { enable: "no", sdk_type: "GM", time_show_inter: 999999, time_show_reward: 0 };
+  window.GMSOFT_GMADS_INFO = { reward: [] };
+  window.gmEvent = function () {};
+  window.gmStartGame = function (cb) { cb(); };
+  window.gmStartAds = function (cb) { cb(); };
+  window.firebaseLogEvent = window.firebaseLogEventParameter = window.firebaseSetUserProperties = function () {};
+  var config = {
+    dataUrl: "Build/wackyflip.data",
+    frameworkUrl: "Build/wackyflip.framework.js",
+    codeUrl: "Build/wackyflip.wasm",
+    streamingAssetsUrl: "StreamingAssets",
+    companyName: "azgames.io",
+    productName: "Wacky Flip",
+    productVersion: "26080604",
+    gameId: "wacky-flip",
+    eventLog: false
+  };
+  var s = document.createElement("script");
+  s.src = "Build/wackyflip.loader.js";
+  s.onload = function () {
+    createUnityInstance(document.getElementById("unity-canvas"), config, function (p) {
+      document.getElementById("bar").style.width = (100 * p) + "%";
+    }).then(function (u) {
+      window.unityInstance = u;
+      document.getElementById("loading").style.display = "none";
+      window.focus();
+    }).catch(function (m) { alert(m); });
+  };
+  document.body.appendChild(s);
+</script>
+</body>
+</html>
