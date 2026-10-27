@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<meta charset="utf-8">
+	
+	<title>Friday Night Funkin' VS Impostor</title>
+	
+	<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="mobile-web-app-capable" content="yes">
+	<link rel="shortcut icon" type="image/png" href="./favicon.png">
+	<script type="text/javascript" src="./legacy.js"></script>
+	<script>
+		window.addEventListener ("touchmove", function (event) { event.preventDefault (); }, { capture: false, passive: false });
+		if (typeof window.devicePixelRatio != 'undefined' && window.devicePixelRatio > 2) {
+			var meta = document.getElementById ("viewport");
+			meta.setAttribute ('content', 'width=device-width, initial-scale=' + (2 / window.devicePixelRatio) + ', user-scalable=no');
+		}
+		window.addEventListener("keydown", function(e) {if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {e.preventDefault(); }}, false);
+	</script>
+	
+	<style>
+		html,body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+		#openfl-content { background: #000000; width: 100%; height: 100%; }
+		@font-face {
+			font-family: 'Aller';
+			src:
+			url('assets/fonts/aller.woff') format('woff'),
+			url('assets/fonts/aller.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Bahnschrift';
+			src:
+			url('assets/fonts/bahn.woff') format('woff'),
+			url('assets/fonts/bahn.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Amatic SC Bold';
+			src:
+			url('assets/fonts/AmaticSC-Bold.woff') format('woff'),
+			url('assets/fonts/AmaticSC-Bold.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Amatic SC Regular';
+			src:
+			url('assets/fonts/AmaticSC-Regular.woff') format('woff'),
+			url('assets/fonts/AmaticSC-Regular.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Apple Kid Regular';
+			src:
+			url('assets/fonts/apple_kid.woff') format('woff'),
+			url('assets/fonts/apple_kid.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Noto Sans Arabic Regular';
+			src:
+			url('assets/fonts/ar.woff') format('woff'),
+			url('assets/fonts/ar.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Noto Sans Arabic Bold';
+			src:
+			url('assets/fonts/arBold.woff') format('woff'),
+			url('assets/fonts/arBold.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Arial Black';
+			src:
+			url('assets/fonts/ariblk.woff') format('woff'),
+			url('assets/fonts/ariblk.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Be Vietnam Pro Regular';
+			src:
+			url('assets/fonts/BeVietnamPro-Regular.woff') format('woff'),
+			url('assets/fonts/BeVietnamPro-Regular.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Be Vietnam Pro SemiBold';
+			src:
+			url('assets/fonts/BeVietnamPro-SemiBold.woff') format('woff'),
+			url('assets/fonts/BeVietnamPro-SemiBold.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Handjet Regular';
+			src:
+			url('assets/fonts/Handjet-VariableFont_ELGR,ELSH,wght.woff') format('woff'),
+			url('assets/fonts/Handjet-VariableFont_ELGR,ELSH,wght.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Impact';
+			src:
+			url('assets/fonts/impact.woff') format('woff'),
+			url('assets/fonts/impact.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Noto Sans JP Regular';
+			src:
+			url('assets/fonts/jp.woff') format('woff'),
+			url('assets/fonts/jp.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Noto Sans JP Bold';
+			src:
+			url('assets/fonts/jpBold.woff') format('woff'),
+			url('assets/fonts/jpBold.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Gowun Dodum Regular';
+			src:
+			url('assets/fonts/kr.woff') format('woff'),
+			url('assets/fonts/kr.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Noto Sans KR Bold';
+			src:
+			url('assets/fonts/krBold.woff') format('woff'),
+			url('assets/fonts/krBold.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Liberation Sans Regular';
+			src:
+			url('assets/fonts/liber.woff') format('woff'),
+			url('assets/fonts/liber.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Liberation Sans Bold';
+			src:
+			url('assets/fonts/liberbold.woff') format('woff'),
+			url('assets/fonts/liberbold.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Noto Sans SC ExtraBold';
+			src:
+			url('assets/fonts/NotoSansSC-ExtraBold.woff') format('woff'),
+			url('assets/fonts/NotoSansSC-ExtraBold.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Noto Sans SC SemiBold';
+			src:
+			url('assets/fonts/NotoSansSC-SemiBold.woff') format('woff'),
+			url('assets/fonts/NotoSansSC-SemiBold.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Noto Sans Thai Regular';
+			src:
+			url('assets/fonts/th.woff') format('woff'),
+			url('assets/fonts/th.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Noto Sans Thai Bold';
+			src:
+			url('assets/fonts/thBold.woff') format('woff'),
+			url('assets/fonts/thBold.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'VCR / VHS Regular Scaled';
+			src:
+			url('assets/fonts/vcr-srb.woff') format('woff'),
+			url('assets/fonts/vcr-srb.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'VCR / VHS Regular Scaled';
+			src:
+			url('assets/fonts/vcr.woff') format('woff'),
+			url('assets/fonts/vcr.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'ZQBBT_T';
+			src:
+			url('assets/fonts/zh_zqbbt.woff') format('woff'),
+			url('assets/fonts/zh_zqbbt.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Nokia Cellphone FC Small';
+			src:
+			url('flixel/fonts/nokiafc22.woff') format('woff'),
+			url('flixel/fonts/nokiafc22.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Monsterrat';
+			src:
+			url('flixel/fonts/monsterrat.woff') format('woff'),
+			url('flixel/fonts/monsterrat.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+
+	</style>
+	
+</head>
+<body>
+	
+	<noscript>This webpage makes extensive use of JavaScript. Please enable JavaScript in your web browser to view this page.</noscript>
+	
+	<div id="openfl-content"></div>
+	
+	<script type="text/javascript">
+		lime.embed ("ImpostorLegacy", "openfl-content", 1280, 720, { parameters: {} });
+	</script>
+	
+</body>
+</html>
